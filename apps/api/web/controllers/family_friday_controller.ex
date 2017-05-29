@@ -26,7 +26,7 @@ defmodule Api.FamilyFridayController do
 
     case head do
       "add-fam" when not is_nil(tail) ->
-        #{:ok, _user_id} = User.create(tail)
+        {:ok, _user_id} = User.create_user(tail)
         #Scheduler.schedule()
         {:ok, %{}}
       _ ->

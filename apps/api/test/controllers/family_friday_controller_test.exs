@@ -3,6 +3,15 @@ defmodule Api.FamilyFridayControllerTest do
 
   @params %{"command" => "/fam-friday", "text" => ""}
 
+  setup context do
+    # overwrites existing entries in test csv
+    on_exit fn ->
+      User.CSV.add_user("Master", "Yoda", :write)
+    end
+
+    context
+  end
+
   test "POST /friyay with no text returns a schedule", %{conn: conn} do
     conn = post conn, "/api/v1/friyay", @params
 
@@ -14,7 +23,9 @@ defmodule Api.FamilyFridayControllerTest do
     %{conn: conn} do
       params = %{@params | "text" => "add-fam Obi-Wan Kenobi"}
       conn = post conn, "/api/v1/friyay", params
+      users = User.get_users() |> Enum.map(fn {_uuid, _first, last} -> last end)
 
+      assert "Kenobi" in users
       assert response(conn, 200) =~ "schedule will go here"
   end
 

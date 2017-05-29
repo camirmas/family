@@ -1,18 +1,21 @@
 defmodule User do
   @moduledoc """
-  Documentation for User.
+  This application provides a simple User management system that is
+  tied to a given CSV filepath.
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> User.hello
-      :world
-
+  Creates a new User and adds it to the CSV and to an ETS table.
   """
-  def hello do
-    :world
+  def create_user([first|last] = name) do
+    User.Worker.create_user(first, last)
+  end
+
+  def create(name) do
+    :error
+  end
+
+  def get_users do
+    User.Worker.get_users()
   end
 end
