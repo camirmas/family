@@ -9,7 +9,7 @@ This application provides an easy to use, extensible system that helps create ra
 To set up the application:
 1. Clone the repo
 2. Make sure you have Elixir and Phoenix installed on your computer
-3. `iex -S mix phoenix.server`
+3. `mix deps.get && iex -S mix phoenix.server`
 4. Set up a new [Slack App](https://api.slack.com/apps) and have the endpoint set to `[base_url]/api/v1/friyay`. Note that you might need to set up [ngrok](https://api.slack.com/tutorials/tunneling-with-ngrok) to be able to test the interaction locally
 5. Install the App for your Slack team.
 
