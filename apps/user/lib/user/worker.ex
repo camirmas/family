@@ -7,10 +7,17 @@ defmodule User.Worker do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  @doc """
+  Creates a new user, adding that user to the CSV as well
+  as updating the ETS table in User.Server.
+  """
   def create_user(first, last) do
     GenServer.call(__MODULE__, {:create_user, first, last})
   end
 
+  @doc """
+  Retrieves existing users from User.Server.
+  """
   def get_users do
     GenServer.call(__MODULE__, :get_users)
   end

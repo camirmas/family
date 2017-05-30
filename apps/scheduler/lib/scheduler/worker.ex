@@ -7,10 +7,16 @@ defmodule Scheduler.Worker do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  @doc """
+  Creates a new schedule.
+  """
   def schedule do
     GenServer.call(__MODULE__, :schedule)
   end
 
+  @doc """
+  Retrieves the existing schedule.
+  """
   def get_schedule do
     GenServer.call(__MODULE__, :get_schedule)
   end

@@ -7,10 +7,16 @@ defmodule User.Server do
     GenServer.start_link(__MODULE__, [], name: __MODULE__)
   end
 
+  @doc """
+  Adds a new user to the ETS table.
+  """
   def add_user(user_data) do
     GenServer.call(__MODULE__, {:add_user, user_data})
   end
 
+  @doc """
+  Retrieves existing users from the ETS table.
+  """
   def get_users() do
     GenServer.call(__MODULE__, :get_users)
   end
