@@ -16,7 +16,7 @@ defmodule Api.FamilyFridayControllerTest do
     conn = post conn, "/api/v1/friyay", @params
 
     # change this later once Scheduler is set up
-    assert response(conn, 200) =~ "schedule will go here"
+    assert response(conn, 200) =~ "|"
   end
 
   test "POST /friyay with proper text adds a user and returns a schedule",
@@ -26,7 +26,7 @@ defmodule Api.FamilyFridayControllerTest do
       users = User.get_users() |> Enum.map(fn {_uuid, _first, last} -> last end)
 
       assert "Kenobi" in users
-      assert response(conn, 200) =~ "schedule will go here"
+      assert response(conn, 200) =~ "|"
   end
 
   test "POST /friyay with improper text leads to an error message",
@@ -35,5 +35,13 @@ defmodule Api.FamilyFridayControllerTest do
       conn = post conn, "/api/v1/friyay", params
 
       assert response(conn, 200) =~ "Sorry, but your request was formatted incorrectly."
+  end
+
+  test "POST /friyay with 'schedule' command creates a new schedule", %{conn: conn} do
+    params = %{@params | "text" => "schedule"}
+
+    conn = post conn, "/api/v1/friyay", params
+
+    assert response(conn, 200) =~ "|"
   end
 end

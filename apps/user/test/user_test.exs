@@ -12,7 +12,7 @@ defmodule UserTest do
 
   describe "User" do
     test "can create a user" do
-      assert {:ok, user} = User.create_user(["Sheev", "Palpatine"])
+      assert {:ok, _user} = User.create_user(["Sheev", "Palpatine"])
     end
 
     test "can get users" do

@@ -4,15 +4,17 @@ defmodule Scheduler do
   """
 
   @doc """
-  Hello world.
-
-  ## Examples
-
-      iex> Scheduler.hello
-      :world
-
+  Creates a new schedule.
   """
-  def hello do
-    :world
+  def schedule do
+    Scheduler.Worker.schedule()
+  end
+
+
+  @doc """
+  Gets an existing schedule.
+  """
+  def get_schedule do
+    Scheduler.Worker.get_schedule()
   end
 end
